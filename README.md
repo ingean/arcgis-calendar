@@ -10,11 +10,9 @@ The calendar is using [FullCalendar.io](https://fullcalendar.io/)
 
 ## ArcGIS Online items
 The webapp use the following AGOL-items:
-https://geodata.maps.arcgis.com/home/item.html?id=42fdf2d9568e473ab4e0ab8bb9393e0f
-
-https://geodata.maps.arcgis.com/home/item.html?id=9ba94cc2d7b947a9a9e83b9f87836851
+>https://geodata.maps.arcgis.com/home/item.html?id=42fdf2d9568e473ab4e0ab8bb9393e0f
+>https://geodata.maps.arcgis.com/home/item.html?id=9ba94cc2d7b947a9a9e83b9f87836851
 
 ### ArcGIS Authentication
-The app request ArcGIS for a token using client_id and client_secret. The app is registered in ArcGIS Online_
-
-https://geodata.maps.arcgis.com/home/item.html?id=92dc30d683c34e85a663c3413a45454a
+The app request ArcGIS for a token using client_id and client_secret. The app is registered in ArcGIS Online:
+>https://geodata.maps.arcgis.com/home/item.html?id=92dc30d683c34e85a663c3413a45454a
