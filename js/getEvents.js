@@ -12,12 +12,21 @@ function featuresToEvents(features, globalId) {
     let event = {
       title: `${f.attributes.RESSURS} - ${f.attributes.LOKALITET_NAVN} (${f.attributes.Tilgjengelighet}%)`,
       start: moment(f.attributes.Dato).format('YYYY-MM-DD'),
-      backgroundColor: eventColor[f.attributes.Tilgjengelighet]
+      backgroundColor: eventColor[f.attributes.Tilgjengelighet],
+      borderColor: eventColor[f.attributes.Tilgjengelighet]
     }
     events.push(event);
   }
   
    return events;
+ }
+
+ function getEventColor(capacity) {
+   if(capacity <= 25) return eventColor[25];
+   if(capacity > 25 && capacity <= 50) return eventColor[50];
+   if(capacity > 50 && capacity <= 75) return eventColor[75];
+   if(capacity > 75) return eventColor[100];
+   return eventColor[0];
  }
  
  function getGlobalIdFromURL() {
@@ -48,7 +57,13 @@ function featuresToEvents(features, globalId) {
 
     let a = [['data-eventDetails', JSON.stringify(details)]];
     let exEvent = createEl({innerHTML: `${caps[i]}% kapasitet`, attributes: a});
-    let exEventCont =createEl({className: 'fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event', child: exEvent});
+    let exEventCont =createEl({
+      className: 'fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event', 
+      child: exEvent,
+      attributes: [
+        ['style', 'background-color:' + eventColor[caps[i]] + ';border:0']
+      ] 
+    });
     exEventsList.appendChild(exEventCont);
   }
   let exEventsListCont = document.getElementById('external-events-container');
