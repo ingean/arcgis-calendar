@@ -1,4 +1,4 @@
-const urlFeatureView = 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/ArcGIS/rest/services/Ressurstilgjengelighet/FeatureServer/0';
+const urlFeatureView = 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/Ressurstilgjengelighet/FeatureServer/0';
 
 
 function featuresToEvents(features, globalId) {
