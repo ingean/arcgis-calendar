@@ -1,5 +1,7 @@
-const urlFeatureView = 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/Ressurstilgjengelighet/FeatureServer/0';
+import { createEl } from './html.js';
+import * as arcgis from './arcgis.js';
 
+const urlFeatureView = 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/Ressurstilgjengelighet/FeatureServer/0';
 
 function featuresToEvents(features, globalId) {
   let events = []
@@ -12,8 +14,8 @@ function featuresToEvents(features, globalId) {
     let event = {
       title: `${f.attributes.RESSURS} - ${f.attributes.LOKALITET_NAVN} (${f.attributes.Tilgjengelighet}%)`,
       start: moment(f.attributes.Dato).format('YYYY-MM-DD'),
-      backgroundColor: eventColor[f.attributes.Tilgjengelighet],
-      borderColor: eventColor[f.attributes.Tilgjengelighet]
+      backgroundColor: getEventColor(f.attributes.Tilgjengelighet),
+      borderColor: getEventColor(f.attributes.Tilgjengelighet)
     }
     events.push(event);
   }
@@ -33,7 +35,6 @@ function featuresToEvents(features, globalId) {
    try {
      const urlParams = new URLSearchParams(window.location.search);
      const globalId = urlParams.get('globalId');
-     FEATURESELECTED = true;
      return globalId
    } catch(error){
      return '';
@@ -74,9 +75,16 @@ function featuresToEvents(features, globalId) {
   document.getElementById('external-events-container').innerHTML = ''
  }
  
- async function getCalendarEvents() {
-   let token = await getToken();
-   let globalId = getGlobalIdFromURL();
-   let features = await getFeatures(urlFeatureView, globalId, token);
-   return featuresToEvents(features, globalId);
+ export async function getCalendarEvents() {
+  let params = ''; 
+  let globalId = getGlobalIdFromURL();
+  
+  if(globalId) {
+    params = {
+      where: `GLOBALID='${globalId}'`
+    }
+  }
+    
+  let features = await arcgis.get(urlFeatureView, params, CREDENTIALS);
+  return featuresToEvents(features, globalId);
  }

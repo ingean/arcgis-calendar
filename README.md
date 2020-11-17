@@ -5,8 +5,14 @@ Requests features from ArcGIS Online and display them on a calendar. The feature
 
 The webapp is published to [GitHub Pages](https://ingean.github.io/arcgis-calendar) 
 
-
 The calendar is using [FullCalendar.io](https://fullcalendar.io/)
+
+## URL parameters
+The app supports url parameters to select a feature to show in calendar.
+Example:
+```
+https://ingean.github.io/arcgis-calendar/index.html?globalId=a43aeca8-190e-4bb7-87be-4a3685b21cc4
+```
 
 ## ArcGIS Online items
 The webapp use the following AGOL-items:

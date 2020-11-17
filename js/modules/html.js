@@ -1,4 +1,4 @@
-function createEl(options) {
+export function createEl(options) {
   let type = 'div';
   if (options.type) type = options.type;
   let el = document.createElement(type);

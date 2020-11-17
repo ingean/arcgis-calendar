@@ -1,3 +1,5 @@
+import * as arcgis from './arcgis.js';
+
 const urlTable = 'https://services.arcgis.com/2JyTvMWQSnM2Vi8q/arcgis/rest/services/VerSa/FeatureServer/7';
 
 function eventToFeatures(info) {
@@ -12,9 +14,7 @@ function eventToFeatures(info) {
  }];
 }
 
-async function addEventToArcGIS(info) {
+export async function addEventToArcGIS(info) {
   let features = eventToFeatures(info);
-  let token = await getToken();
-  let success = await addFeatures(urlTable, features, token);
-  //if (!success) console.log('Not able to add event to ArcGIS');
+  let success = await arcgis.add(urlTable, features, CREDENTIALS);
 }

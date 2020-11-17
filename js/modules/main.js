@@ -1,3 +1,6 @@
+import { getCalendarEvents } from './getEvents.js';
+import { addEventToArcGIS } from './addEvent.js';
+
 document.addEventListener('DOMContentLoaded', async function() {
   moment.locale('nb_NO');
 
