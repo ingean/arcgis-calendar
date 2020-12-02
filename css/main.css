@@ -52,6 +52,7 @@ a {
   z-index: 1;
   margin: 20px;
   background-color: var(--fc-bg-color);
+  overflow-y: scroll;
 }
 
 #calendar {

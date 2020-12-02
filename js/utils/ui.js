@@ -1,6 +1,6 @@
 document
 .getElementById("btn-collapse")
-.addEventListener("click", collapseToolbar);
+.addEventListener("click", toggleToolbar);
 
 document
 .querySelectorAll('.flow-panel-open').forEach(element => {
@@ -13,7 +13,7 @@ document
 })
 
 
-function collapseToolbar(event) {
+function toggleToolbar(event) {
   let emnts = document.getElementsByClassName("collapsable");
   let collapse = true; 
 
@@ -29,15 +29,41 @@ function collapseToolbar(event) {
   }
 
   if (collapse) {
-    document.getElementById("icon-collapse").classList.remove("icon-ui-expand");
-    document.getElementById("icon-collapse").classList.add("icon-ui-collapse");
-    document.getElementById("action-bar").style.flex = "0 0 3em";
+    collapseActionBar();
   
   } else {
-    document.getElementById("icon-collapse").classList.remove("icon-ui-collapse");
-    document.getElementById("icon-collapse").classList.add("icon-ui-expand");
-    document.getElementById("action-bar").style.flex = "0 0 150px";
-  }    
+    expandActionBar()
+  }
+  storeActionBarCollapse(collapse);    
+}
+
+function collapseActionBar() {
+  document.getElementById("icon-collapse").classList.remove("icon-ui-expand");
+  document.getElementById("icon-collapse").classList.add("icon-ui-collapse");
+  document.getElementById("action-bar").style.flex = "0 0 3em";
+}
+
+function expandActionBar() {
+  document.getElementById("icon-collapse").classList.remove("icon-ui-collapse");
+  document.getElementById("icon-collapse").classList.add("icon-ui-expand");
+  document.getElementById("action-bar").style.flex = "0 0 150px";
+}
+
+function storeActionBarCollapse(collapse) {
+  let storage = window.sessionStorage;
+  storage.setItem('actionBarState', collapse);
+}
+
+function getActionBarCollapse() {
+  let storage = window.sessionStorage;
+  return storage.getItem('actionBarState');
+}
+
+function setActionBarStatus() {
+  let status = getActionBarCollapse();
+  if (status === "true") {
+    toggleToolbar();
+  }
 }
 
 function closeFlowPanels(event) {

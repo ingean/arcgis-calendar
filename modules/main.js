@@ -3,6 +3,7 @@ import { addEventToArcGIS, availSpaceUpdated } from './addEvent.js';
 
 document.addEventListener('DOMContentLoaded', async function() {
   moment.locale('nb_NO');
+  setActionBarStatus();
 
   let eventSource = {
     events: async function(info, success, fail) {
