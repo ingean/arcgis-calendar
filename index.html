@@ -14,22 +14,64 @@
     <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.2.5/css/calcite-web.min.css">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css' rel='stylesheet' />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/actionbar.css" />
+    <link rel="stylesheet" type="text/css" href="css/flowpanel.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/locales-all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@5.3.1/main.global.min.js"></script>
   </head>
   <body>
-    
-    <div id='external-events-container'></div>
-    
-    <div id='calendar-container'>
-      <div id='calendar'></div>
+    <div id="container">
+      <div id="action-bar">
+        <div class="action-group">
+          <div class="action">
+            <button id="btn-show-settings" class="action-btn flow-panel-open">
+              <div class="icon-ui-calendar action-item"></div>
+              <div class="action-text collapsable" >Ny booking</div>
+            </button>
+          </div>
+        </div>
+        <div class="action-group bottom">
+          <div class="action">
+            <button id="btn-collapse" class="action-btn">
+              <div id="icon-collapse" class="icon-ui-expand action-item"></div>
+              <div class="action-text collapsable" >Minimere</div>
+            </button>
+          </div> 
+        </div>
+      </div> <!-- end action bar -->
+
+      <!-- Flow panel -->
+      <div id="panel-settings" class="flow-panel">
+        <div class="flow-panel-header">
+          <div class="heading">Ny booking</div>
+          <div id="panel-close-settings" class="flow-panel-close icon-ui-close left"></div>
+        </div>
+        <div id="list-settings" class="flow-panel-list">
+          <label class="subheading panel-setting">
+            Antall ledige plasser:
+            <input id="addEvent-spaces" type="number" value="100">
+          </label>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event newEvent panel-setting">
+            <div id="addEvent-btn" class="newEvent" data-eventDetails="">Legg til</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <div id='calendar-container'>
+        <div id='calendar-title'>
+          Alle ressurser
+        </div>
+        <div id='calendar'></div>
+      </div>  
     </div>
-    
+        
     <!-- Scripts-->
     <script type="text/javascript" src="js/lib/moment.loc.min.js"></script>
     <script type="text/javascript" src="js/utils/config.js"></script>
-    <script type="module" src="js/modules/main.js"></script>
+    <script type="text/javascript" src="js/utils/ui.js"></script>
+    <script type="module" src="modules/main.js"></script>
   </body>
 </html>

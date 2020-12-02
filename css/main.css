@@ -11,6 +11,15 @@ html, body {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
   background-color: var(--fc-bg-color);
+  height: 100%;
+  width: 100%;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -39,13 +48,41 @@ a {
 }
 
 #calendar-container {
-  position: relative;
+  /* position: relative; */
   z-index: 1;
-  margin-left: 200px;
+  margin: 20px;
   background-color: var(--fc-bg-color);
 }
 
 #calendar {
   max-width: 1100px;
   margin: 20px auto;
+}
+
+#calendar-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.addEvent-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+#addEvent-spaces {
+  margin: 10px;
+  width: 100px;
+  align-items: center;
+}
+
+#addEvent-btn {
+  margin: 10px;
+  text-align: center;
+  color: white;
+}
+
+.newEvent {
+  border: 0;
 }
