@@ -8,11 +8,12 @@ The webapp is published to [GitHub Pages](https://ingean.github.io/arcgis-calend
 The calendar is using [FullCalendar.io](https://fullcalendar.io/)
 
 ## URL parameters
-The app supports url parameters to select a feature to show in calendar.
+The app supports url parameters to select a feature to show in calendar and auto refresh events.
 Example:
 ```
-https://ingean.github.io/arcgis-calendar/index.html?globalId=a43aeca8-190e-4bb7-87be-4a3685b21cc4
+https://ingean.github.io/arcgis-calendar/index.html?globalId=a43aeca8-190e-4bb7-87be-4a3685b21cc4&refreshInterval=6000
 ```
+However, there seems like the auto refresh does not work in ArcGIS Dashboards at least in combination with a feature filter. 
 
 ## ArcGIS Online items
 The webapp use the following AGOL-items:
