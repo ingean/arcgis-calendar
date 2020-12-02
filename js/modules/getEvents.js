@@ -41,6 +41,16 @@ function featuresToEvents(features, globalId) {
    }
  }
 
+ function getURLParam(key) {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const val = urlParams.get(key);
+    return val
+  } catch(error){
+    return '';
+  }
+ }
+
  function addExternalEvents(f) {
   let caps = [25, 50, 75, 100];
   let title = `${f.attributes.RESSURS} - ${f.attributes.LOKALITET_NAVN}`;
@@ -77,7 +87,7 @@ function featuresToEvents(features, globalId) {
  
  export async function getCalendarEvents() {
   let params = ''; 
-  let globalId = getGlobalIdFromURL();
+  let globalId = getURLParam('globalId');
   
   if(globalId) {
     params = {
@@ -88,3 +98,18 @@ function featuresToEvents(features, globalId) {
   let features = await arcgis.get(urlFeatureView, params, CREDENTIALS);
   return featuresToEvents(features, globalId);
  }
+
+ export function refreshCalendar(calendar) {
+  let interval = getURLParam('refreshInterval');
+  
+  if (interval) {
+    interval = Number(interval);
+    autoRefresh(calendar, interval);
+  }
+ }
+
+function autoRefresh(calendar, interval) {  
+  setInterval(async () => {
+    calendar.refetchEvents();
+  }, interval)
+}

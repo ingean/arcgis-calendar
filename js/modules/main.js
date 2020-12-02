@@ -1,10 +1,17 @@
-import { getCalendarEvents } from './getEvents.js';
+import { getCalendarEvents, refreshCalendar } from './getEvents.js';
 import { addEventToArcGIS } from './addEvent.js';
 
 document.addEventListener('DOMContentLoaded', async function() {
   moment.locale('nb_NO');
 
-  let events = await getCalendarEvents();
+  let eventSource = {
+    events: async function(info, success, fail) {
+      return await getCalendarEvents()
+    }
+  }
+
+
+  //let events = await getCalendarEvents();
  
   var containerEl = document.getElementById('external-events-container'); 
   var calendarEl = document.getElementById('calendar');
@@ -33,10 +40,13 @@ document.addEventListener('DOMContentLoaded', async function() {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    events: events,
+    eventSources: [eventSource],
+    //events: events,
     drop: function(info) {
       addEventToArcGIS(info);
       }
   });
   calendar.render();
+
+  refreshCalendar(calendar);
 });
