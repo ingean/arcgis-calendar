@@ -1,5 +1,5 @@
-import { getCalendarEvents, refreshCalendar, updateAddEventDetails, getEventColor } from './getEvents.js';
-import { addEventToArcGIS, availSpaceUpdated } from './addEvent.js';
+import { getCalendarEvents, refreshCalendar, getEventColor } from './getEvents.js';
+import { addEventToArcGIS, updateAddEventDetails, availSpaceUpdated } from './addEvent.js';
 
 document.addEventListener('DOMContentLoaded', async function() {
   moment.locale('nb_NO');
@@ -53,7 +53,3 @@ document.addEventListener('DOMContentLoaded', async function() {
   document.getElementById('addEvent-spaces')
   .addEventListener('input', availSpaceUpdated)
 });
-
-function test() {
-  alert('Got triggered');
-}
